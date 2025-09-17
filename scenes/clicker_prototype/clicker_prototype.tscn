@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://boryqigx1hisl"]
+
+[ext_resource type="Script" path="res://scenes/clicker_prototype/clicker_prototype.gd" id="1_0rfq7"]
+[ext_resource type="Texture2D" uid="uid://dlo6klhfieil3" path="res://assets/orange_cat.png" id="2_ouepu"]
+
+[node name="ClickerPrototype" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0rfq7")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+text = "Meows: 23"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -111.0
+offset_right = 60.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_ouepu")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
