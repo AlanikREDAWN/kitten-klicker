@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6woywf0dd7k"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_xgg61"]
+[ext_resource type="Texture2D" uid="uid://dlo6klhfieil3" path="res://assets/orange_cat.png" id="2_xpbov"]
+[ext_resource type="Texture2D" uid="uid://d1q17bw8k34p2" path="res://assets/art_cat.png" id="3_nnuop"]
+[ext_resource type="Script" path="res://scenes/art_cat.gd" id="4_wbtxb"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_xgg61")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 202.0
+offset_bottom = 76.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Meows: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OrangeCat" type="TextureButton" parent="."]
+offset_left = 490.0
+offset_top = 226.0
+offset_right = 640.0
+offset_bottom = 464.0
+size_flags_horizontal = 4
+
+[node name="OrangeCat" type="Sprite2D" parent="OrangeCat"]
+position = Vector2(83, 117)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_xpbov")
+
+[node name="ArtCat" type="Sprite2D" parent="."]
+position = Vector2(398, 198)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_nnuop")
+script = ExtResource("4_wbtxb")
+
+[connection signal="pressed" from="OrangeCat" to="." method="_on_orange_cat_pressed"]
+[connection signal="increase_meow" from="ArtCat" to="." method="_on_art_cat_increase_meow"]
