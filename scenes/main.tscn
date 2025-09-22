@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6woywf0dd7k"]
+[gd_scene load_steps=19 format=3 uid="uid://b6woywf0dd7k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_xgg61"]
+[ext_resource type="FontFile" uid="uid://ba2o1tgt8s5b2" path="res://assets/SuperAdorable-MAvyp.ttf" id="2_6cecm"]
 [ext_resource type="Texture2D" uid="uid://dlo6klhfieil3" path="res://assets/orange_cat.png" id="2_xpbov"]
 [ext_resource type="Texture2D" uid="uid://d1q17bw8k34p2" path="res://assets/art_cat.png" id="3_nnuop"]
 [ext_resource type="Script" path="res://scripts/art_cat.gd" id="4_wbtxb"]
@@ -12,18 +13,24 @@
 [ext_resource type="Script" path="res://scripts/brown_cat.gd" id="10_f5ue6"]
 [ext_resource type="Texture2D" uid="uid://d153x0x26ieue" path="res://assets/scared_cat.png" id="11_r6n2m"]
 [ext_resource type="Script" path="res://scripts/scared_cat.gd" id="12_ydtyp"]
+[ext_resource type="Script" path="res://scripts/shop_button.gd" id="13_8fm4u"]
 [ext_resource type="Texture2D" uid="uid://c3xa0svl3q82g" path="res://assets/shop.png" id="13_l3sny"]
+[ext_resource type="Script" path="res://scripts/bow_cat.gd" id="14_03jcj"]
+[ext_resource type="PackedScene" uid="uid://ds254imp31x51" path="res://scenes/shop.tscn" id="15_dvs2n"]
+[ext_resource type="Texture2D" uid="uid://cv0jibbodyiva" path="res://assets/bow_cat.png" id="16_kcmb2"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_xgg61")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 202.0
-offset_bottom = 76.0
+offset_left = 35.0
+offset_top = 26.0
+offset_right = 285.0
+offset_bottom = 95.0
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 0.529412, 0.756863, 1)
+theme_override_fonts/font = ExtResource("2_6cecm")
+theme_override_font_sizes/font_size = 60
 text = "Meows: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -70,19 +77,31 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("11_r6n2m")
 script = ExtResource("12_ydtyp")
 
+[node name="BowCat" type="Sprite2D" parent="."]
+position = Vector2(851, 104)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("16_kcmb2")
+script = ExtResource("14_03jcj")
+
 [node name="Shop" type="TextureButton" parent="."]
 offset_left = 549.0
 offset_top = 523.0
 offset_right = 651.0
 offset_bottom = 626.0
+script = ExtResource("13_8fm4u")
 
 [node name="Shop" type="Sprite2D" parent="Shop"]
 position = Vector2(52, 52)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("13_l3sny")
 
+[node name="shop" parent="." instance=ExtResource("15_dvs2n")]
+
 [connection signal="pressed" from="OrangeCat" to="." method="_on_orange_cat_pressed"]
 [connection signal="increase_meow" from="ArtCat" to="." method="_on_art_cat_increase_meow"]
 [connection signal="increase_meow" from="BeigeCat" to="." method="_on_beige_cat_increase_meow"]
 [connection signal="increase_meow" from="BlackCat" to="." method="_on_black_cat_increase_meow"]
 [connection signal="increase_meow" from="BrownCat" to="." method="_on_brown_cat_increase_meow"]
+[connection signal="increase_meow" from="ScaredCat" to="." method="_on_scared_cat_increase_meow"]
+[connection signal="increase_meow" from="BowCat" to="." method="_on_bow_cat_increase_meow"]
+[connection signal="pressed" from="Shop" to="Shop" method="_on_pressed"]

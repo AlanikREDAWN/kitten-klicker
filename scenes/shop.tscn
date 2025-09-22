@@ -1,0 +1,221 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds254imp31x51"]
+
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_mcttn"]
+[ext_resource type="Texture2D" uid="uid://kfnxg1xwxkvt" path="res://assets/close.png" id="2_4twbk"]
+[ext_resource type="Texture2D" uid="uid://d1q17bw8k34p2" path="res://assets/art_cat.png" id="2_i7pp2"]
+[ext_resource type="Texture2D" uid="uid://c5wgbevjk577m" path="res://assets/beige_cat.png" id="3_2jjyp"]
+[ext_resource type="Texture2D" uid="uid://cxbhfwdj38ykd" path="res://assets/black_cat.png" id="4_mely6"]
+[ext_resource type="Texture2D" uid="uid://gknc048omnfh" path="res://assets/brown_cat.png" id="5_j4rss"]
+[ext_resource type="Texture2D" uid="uid://cv0jibbodyiva" path="res://assets/bow_cat.png" id="6_eafh0"]
+[ext_resource type="Texture2D" uid="uid://d153x0x26ieue" path="res://assets/scared_cat.png" id="6_yxfs2"]
+[ext_resource type="Texture2D" uid="uid://ctpp6wvtngxnl" path="res://assets/next.png" id="7_4a13n"]
+[ext_resource type="Texture2D" uid="uid://c6ad4twk53wb3" path="res://assets/prev.png" id="8_oboox"]
+
+[sub_resource type="Animation" id="Animation_04qeg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 600)]
+}
+
+[sub_resource type="Animation" id="Animation_84wv2"]
+resource_name = "TransIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -600), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_etnmi"]
+resource_name = "TransOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_geces"]
+_data = {
+"RESET": SubResource("Animation_04qeg"),
+"TransIn": SubResource("Animation_84wv2"),
+"TransOut": SubResource("Animation_etnmi")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obumg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i7pp2")
+}],
+"loop": true,
+"name": &"art_cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2jjyp")
+}],
+"loop": true,
+"name": &"beige_cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mely6")
+}],
+"loop": true,
+"name": &"black_cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eafh0")
+}],
+"loop": true,
+"name": &"bow_cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_j4rss")
+}],
+"loop": true,
+"name": &"brown_cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_yxfs2")
+}],
+"loop": true,
+"name": &"scared_cat",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j78vq"]
+bg_color = Color(1, 0.745098, 0.145098, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.427451, 0.0666667, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="shop" type="CanvasLayer"]
+process_mode = 3
+offset = Vector2(0, 600)
+transform = Transform2D(1, 0, 0, 1, 0, 600)
+script = ExtResource("1_mcttn")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_geces")
+}
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 576.0
+
+[node name="Close" type="TextureButton" parent="."]
+offset_left = 952.0
+offset_top = 104.0
+offset_right = 3387.0
+offset_bottom = 2507.0
+scale = Vector2(0.04, 0.04)
+texture_normal = ExtResource("2_4twbk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(576, 248)
+scale = Vector2(0.07, 0.07)
+sprite_frames = SubResource("SpriteFrames_obumg")
+animation = &"art_cat"
+
+[node name="Name" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 104.0
+offset_right = 768.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 30
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 360.0
+offset_right = 896.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 30
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Next" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 248.0
+offset_right = 2872.0
+offset_bottom = 2296.0
+scale = Vector2(0.05, 0.05)
+texture_normal = ExtResource("7_4a13n")
+
+[node name="Prev" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 256.0
+offset_right = 2272.0
+offset_bottom = 2304.0
+scale = Vector2(0.05, 0.05)
+texture_normal = ExtResource("8_oboox")
+
+[node name="Buy" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 488.0
+offset_right = 704.0
+offset_bottom = 552.0
+theme_override_colors/font_color = Color(1, 0.380392, 0.00392157, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_j78vq")
+text = "Purchase
+"
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Control/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Control/Prev" to="." method="_on_prev_pressed"]
+[connection signal="pressed" from="Control/Buy" to="." method="_on_buy_pressed"]

@@ -29,3 +29,13 @@ func _on_black_cat_increase_meow() -> void:
 func _on_brown_cat_increase_meow() -> void:
 	meows += 4
 	meows_label.text = "Meows: " + str(meows)
+
+
+func _on_scared_cat_increase_meow() -> void:
+	meows += 5
+	meows_label.text = "Meows: " + str(meows)
+
+
+func _on_bow_cat_increase_meow() -> void:
+	meows += 6
+	meows_label.text = "Meows: " + str(meows)
