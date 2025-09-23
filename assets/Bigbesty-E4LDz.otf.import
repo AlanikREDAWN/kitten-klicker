@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ba2o1tgt8s5b2"
-path="res://.godot/imported/SuperAdorable-MAvyp.ttf-9f27aac85a4b146d5be3fd3c1def1055.fontdata"
+uid="uid://bd7dqopvy2j51"
+path="res://.godot/imported/Bigbesty-E4LDz.otf-690cee5ea307d87dc80b5bfc66541531.fontdata"
 
 [deps]
 
-source_file="res://assets/SuperAdorable-MAvyp.ttf"
-dest_files=["res://.godot/imported/SuperAdorable-MAvyp.ttf-9f27aac85a4b146d5be3fd3c1def1055.fontdata"]
+source_file="res://assets/Bigbesty-E4LDz.otf"
+dest_files=["res://.godot/imported/Bigbesty-E4LDz.otf-690cee5ea307d87dc80b5bfc66541531.fontdata"]
 
 [params]
 
@@ -17,8 +17,8 @@ antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
-msdf_pixel_range=8
-msdf_size=48
+msdf_pixel_range=2
+msdf_size=25
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
