@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpol8uqa2k077"]
+
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_8ppkc"]
+[ext_resource type="FontFile" uid="uid://bd7dqopvy2j51" path="res://assets/Bigbesty-E4LDz.otf" id="1_buyf5"]
+[ext_resource type="Texture2D" uid="uid://kfnxg1xwxkvt" path="res://assets/close.png" id="2_05kyt"]
+
+[sub_resource type="Animation" id="Animation_04qeg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1200)]
+}
+
+[sub_resource type="Animation" id="Animation_84wv2"]
+resource_name = "TransIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1200), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_etnmi"]
+resource_name = "TransOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_geces"]
+_data = {
+"RESET": SubResource("Animation_04qeg"),
+"TransIn": SubResource("Animation_84wv2"),
+"TransOut": SubResource("Animation_etnmi")
+}
+
+[node name="credits" type="CanvasLayer"]
+process_mode = 3
+offset = Vector2(0, 1200)
+transform = Transform2D(1, 0, 0, 1, 0, 1200)
+script = ExtResource("1_8ppkc")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_geces")
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -832.0
+offset_top = -412.0
+offset_right = 832.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 1664.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(1, 0.403922, 0.0352941, 1)
+theme_override_colors/font_outline_color = Color(1, 0.752941, 0.172549, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_buyf5")
+theme_override_font_sizes/font_size = 75
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="TextureButton" parent="."]
+offset_left = 1632.0
+offset_top = 168.0
+offset_right = 4067.0
+offset_bottom = 2571.0
+scale = Vector2(0.05, 0.05)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_05kyt")
+
+[node name="CreditsContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line" type="Label" parent="CreditsContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 468.0
+offset_top = 328.0
+offset_right = 1408.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_buyf5")
+theme_override_font_sizes/font_size = 50
+text = "Game created by: Lilia (aka KittyCat)
+
+Art created by: Lilia (aka KittyCat)
+
+Music by: Dan Knoflicek"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

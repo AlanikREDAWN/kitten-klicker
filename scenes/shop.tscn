@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ds254imp31x51"]
+[gd_scene load_steps=22 format=3 uid="uid://ds254imp31x51"]
 
 [ext_resource type="Script" path="res://scripts/shop.gd" id="1_mcttn"]
 [ext_resource type="Texture2D" uid="uid://kfnxg1xwxkvt" path="res://assets/close.png" id="2_4twbk"]
@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cv0jibbodyiva" path="res://assets/bow_cat.png" id="6_eafh0"]
 [ext_resource type="Texture2D" uid="uid://d153x0x26ieue" path="res://assets/scared_cat.png" id="6_yxfs2"]
 [ext_resource type="Texture2D" uid="uid://ctpp6wvtngxnl" path="res://assets/next.png" id="7_4a13n"]
+[ext_resource type="Texture2D" uid="uid://de66mp4ottf87" path="res://assets/catCursorFullSize.png" id="8_hge8i"]
 [ext_resource type="Texture2D" uid="uid://c6ad4twk53wb3" path="res://assets/prev.png" id="8_oboox"]
 [ext_resource type="FontFile" uid="uid://bd7dqopvy2j51" path="res://assets/Bigbesty-E4LDz.otf" id="9_itjgv"]
+[ext_resource type="PackedScene" uid="uid://b65jocj1g8vaj" path="res://scenes/pop_up.tscn" id="13_30aun"]
+[ext_resource type="AudioStream" uid="uid://debijk1kshsa0" path="res://assets/coin.wav" id="14_b5wsl"]
 
 [sub_resource type="Animation" id="Animation_04qeg"]
 length = 0.001
@@ -71,7 +74,7 @@ animations = [{
 "texture": ExtResource("2_i7pp2")
 }],
 "loop": true,
-"name": &"art_cat",
+"name": &"Art Cat",
 "speed": 5.0
 }, {
 "frames": [{
@@ -79,7 +82,7 @@ animations = [{
 "texture": ExtResource("3_2jjyp")
 }],
 "loop": true,
-"name": &"beige_cat",
+"name": &"Beige Cat",
 "speed": 5.0
 }, {
 "frames": [{
@@ -87,7 +90,7 @@ animations = [{
 "texture": ExtResource("4_mely6")
 }],
 "loop": true,
-"name": &"black_cat",
+"name": &"Black Cat",
 "speed": 5.0
 }, {
 "frames": [{
@@ -95,7 +98,7 @@ animations = [{
 "texture": ExtResource("6_eafh0")
 }],
 "loop": true,
-"name": &"bow_cat",
+"name": &"Bow Cat",
 "speed": 5.0
 }, {
 "frames": [{
@@ -103,7 +106,15 @@ animations = [{
 "texture": ExtResource("5_j4rss")
 }],
 "loop": true,
-"name": &"brown_cat",
+"name": &"Brown Cat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hge8i")
+}],
+"loop": true,
+"name": &"Cat Cursor",
 "speed": 5.0
 }, {
 "frames": [{
@@ -111,7 +122,7 @@ animations = [{
 "texture": ExtResource("6_yxfs2")
 }],
 "loop": true,
-"name": &"scared_cat",
+"name": &"Scared Cat",
 "speed": 5.0
 }]
 
@@ -156,6 +167,7 @@ offset_top = 192.0
 offset_right = 4043.0
 offset_bottom = 2595.0
 scale = Vector2(0.05, 0.05)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_4twbk")
 
 [node name="Control" type="Control" parent="."]
@@ -168,7 +180,7 @@ offset_bottom = 40.0
 position = Vector2(960, 440)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_obumg")
-animation = &"art_cat"
+animation = &"Art Cat"
 
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 0
@@ -178,7 +190,7 @@ offset_right = 1152.0
 offset_bottom = 234.0
 theme_override_fonts/font = ExtResource("9_itjgv")
 theme_override_font_sizes/font_size = 60
-text = "Name"
+text = "Art Cat"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -191,7 +203,8 @@ offset_right = 1368.0
 offset_bottom = 747.0
 theme_override_fonts/font = ExtResource("9_itjgv")
 theme_override_font_sizes/font_size = 50
-text = "Description"
+text = "+1 Meow per second
+Cost: 10"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -203,6 +216,7 @@ offset_top = 448.0
 offset_right = 3376.0
 offset_bottom = 2496.0
 scale = Vector2(0.07, 0.07)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_4a13n")
 
 [node name="Prev" type="TextureButton" parent="Control"]
@@ -212,6 +226,7 @@ offset_top = 448.0
 offset_right = 2488.0
 offset_bottom = 2496.0
 scale = Vector2(0.07, 0.07)
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_oboox")
 
 [node name="Buy" type="Button" parent="Control"]
@@ -220,6 +235,7 @@ offset_left = 816.0
 offset_top = 808.0
 offset_right = 1112.0
 offset_bottom = 896.0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 0.745098, 0.145098, 1)
 theme_override_colors/font_color = Color(1, 0.380392, 0.00392157, 1)
 theme_override_fonts/font = ExtResource("9_itjgv")
@@ -228,6 +244,26 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_fpvc8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_j78vq")
 text = "Purchase
 "
+
+[node name="popUp" parent="." instance=ExtResource("13_30aun")]
+layer = 2
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_b5wsl")
+bus = &"SFX"
+
+[node name="SoldLabel" type="Label" parent="."]
+visible = false
+offset_left = 1152.0
+offset_top = 200.0
+offset_right = 1464.0
+offset_bottom = 328.0
+rotation = 0.410152
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_itjgv")
+theme_override_font_sizes/font_size = 125
+text = "Sold!"
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Control/Next" to="." method="_on_next_pressed"]

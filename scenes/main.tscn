@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6woywf0dd7k"]
+[gd_scene load_steps=22 format=3 uid="uid://b6woywf0dd7k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_xgg61"]
 [ext_resource type="FontFile" uid="uid://ba2o1tgt8s5b2" path="res://assets/SuperAdorable-MAvyp.ttf" id="2_6cecm"]
 [ext_resource type="Texture2D" uid="uid://dlo6klhfieil3" path="res://assets/orange_cat.png" id="2_xpbov"]
 [ext_resource type="Texture2D" uid="uid://d1q17bw8k34p2" path="res://assets/art_cat.png" id="3_nnuop"]
+[ext_resource type="Texture2D" uid="uid://ch5bhnlm25qpg" path="res://assets/orange_cat_hover.png" id="4_0iae2"]
 [ext_resource type="Script" path="res://scripts/art_cat.gd" id="4_wbtxb"]
 [ext_resource type="Texture2D" uid="uid://c5wgbevjk577m" path="res://assets/beige_cat.png" id="5_jsayk"]
 [ext_resource type="Script" path="res://scripts/beige_cat.gd" id="6_1meh7"]
@@ -18,11 +19,14 @@
 [ext_resource type="Script" path="res://scripts/bow_cat.gd" id="14_03jcj"]
 [ext_resource type="PackedScene" uid="uid://ds254imp31x51" path="res://scenes/shop.tscn" id="15_dvs2n"]
 [ext_resource type="Texture2D" uid="uid://cv0jibbodyiva" path="res://assets/bow_cat.png" id="16_kcmb2"]
+[ext_resource type="AudioStream" uid="uid://c8q2vpqm8fe3m" path="res://assets/Meow.ogg" id="19_ue6nn"]
+[ext_resource type="AudioStream" uid="uid://cnoy0t5k054c3" path="res://assets/Cat Song 1.0.wav" id="20_kv31c"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_xgg61")
 
 [node name="Label" type="Label" parent="."]
+process_mode = 3
 offset_left = 35.0
 offset_top = 26.0
 offset_right = 285.0
@@ -40,44 +44,55 @@ offset_left = 732.0
 offset_top = 235.0
 offset_right = 1069.0
 offset_bottom = 738.0
+scale = Vector2(0.25, 0.25)
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_xpbov")
+texture_hover = ExtResource("4_0iae2")
 
 [node name="OrangeCat" type="Sprite2D" parent="OrangeCat"]
+visible = false
 position = Vector2(182, 258)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_xpbov")
 
 [node name="ArtCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(766, 415)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_nnuop")
 script = ExtResource("4_wbtxb")
 
 [node name="BeigeCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(519, 343)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_jsayk")
 script = ExtResource("6_1meh7")
 
 [node name="BlackCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1105, 180)
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("7_l8ice")
 script = ExtResource("8_1ywd3")
 
 [node name="BrownCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1204, 334)
 scale = Vector2(0.14, 0.14)
 texture = ExtResource("9_wkl06")
 script = ExtResource("10_f5ue6")
 
 [node name="ScaredCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(644, 616)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("11_r6n2m")
 script = ExtResource("12_ydtyp")
 
 [node name="BowCat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1362, 117)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("16_kcmb2")
@@ -88,6 +103,7 @@ offset_left = 871.0
 offset_top = 853.0
 offset_right = 1057.0
 offset_bottom = 1040.0
+mouse_default_cursor_shape = 2
 script = ExtResource("13_8fm4u")
 
 [node name="Shop" type="Sprite2D" parent="Shop"]
@@ -96,6 +112,15 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("13_l3sny")
 
 [node name="shop" parent="." instance=ExtResource("15_dvs2n")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_ue6nn")
+bus = &"SFX"
+
+[node name="mainMenuMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("20_kv31c")
+autoplay = true
 
 [connection signal="pressed" from="OrangeCat" to="." method="_on_orange_cat_pressed"]
 [connection signal="increase_meow" from="ArtCat" to="." method="_on_art_cat_increase_meow"]

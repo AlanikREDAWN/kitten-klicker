@@ -14,3 +14,4 @@ func _process(delta: float) -> void:
 func _on_pressed() -> void:
 	get_tree().paused = true
 	get_node("../shop/Anim").play("TransIn")
+	
