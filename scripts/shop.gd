@@ -128,6 +128,18 @@ func _on_buy_pressed() -> void:
 				popup.visible = true
 		else:
 			pass
+	if currItem == 7: # news ticker
+		if Global.ticker_unlocked == false:
+			$SoldLabel.visible = false
+			if Global.meows >= Global.items[currItem]["Cost"]:
+				Global.meows -= Global.items[currItem]["Cost"]
+				meows_label.text = "Meows: " + str(Global.meows)
+				Global.unlock_news_ticker()
+				$AudioStreamPlayer.play()
+			else:
+				popup.visible = true
+		else:
+			pass
 	
 	
 func check_for_sold():
@@ -156,7 +168,7 @@ func check_for_sold():
 			$SoldLabel.visible = true
 	
 	if currItem == 4: # Scared Cat
-		if Global.brown_cat_unlocked == false:
+		if Global.scared_cat_unlocked == false:
 			$SoldLabel.visible = false
 		else:
 			$SoldLabel.visible = true
@@ -169,6 +181,12 @@ func check_for_sold():
 	
 	if currItem == 6: # Cursor
 		if Global.cursor_unlocked == false:
+			$SoldLabel.visible = false
+		else:
+			$SoldLabel.visible = true
+	
+	if currItem == 7: # news ticker
+		if Global.ticker_unlocked == false:
 			$SoldLabel.visible = false
 		else:
 			$SoldLabel.visible = true

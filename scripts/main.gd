@@ -10,10 +10,16 @@ func _ready() -> void:
 	meows_label.text = "Meows: " + str(Global.meows)
 
 func _on_orange_cat_pressed() -> void:
-	Global.meows += 1
-	print("meows = " + str(Global.meows))
-	meows_label.text = "Meows: " + str(Global.meows)
-	$AudioStreamPlayer.play()
+	if Global.cursor_unlocked == true:
+		Global.meows += 5
+		print("meows = " + str(Global.meows))
+		meows_label.text = "Meows: " + str(Global.meows)
+		$AudioStreamPlayer.play()
+	else:
+		Global.meows += 1
+		print("meows = " + str(Global.meows))
+		meows_label.text = "Meows: " + str(Global.meows)
+		$AudioStreamPlayer.play()
 
 
 func _on_art_cat_increase_meow() -> void:

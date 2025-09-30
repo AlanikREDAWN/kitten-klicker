@@ -36,9 +36,14 @@ var items = {
 	},
 	6: {
 		"Name": "Cat Cursor",
-		"Desc": "Changes your cursor into a cat paw!",
+		"Desc": "Changes your cursor into a cat paw! +5 meows per click",
 		"Cost": 150,
 	},
+	7: {
+		"Name": "News Ticker",
+		"Desc": "Interesting news headlines scrolling across your screen!",
+		"Cost": 200
+	}
 }
 
 var art_cat_unlocked = false
@@ -48,6 +53,7 @@ var brown_cat_unlocked = false
 var scared_cat_unlocked = false
 var bow_cat_unlocked = false
 var cursor_unlocked = false
+var ticker_unlocked = false
 
 func unlock_art_cat():
 	art_cat_unlocked = true
@@ -83,3 +89,10 @@ func unlock_mouse_cursor():
 	cursor_unlocked = true
 	Input.set_custom_mouse_cursor(cursor)
 	Input.set_custom_mouse_cursor(cursorHover, Input.CURSOR_POINTING_HAND)
+	get_node("../main/shop/SoldLabel").visible = true
+
+func unlock_news_ticker():
+	ticker_unlocked = true
+	get_node("../main/tickerContainer").visible = true
+	get_node("../main/shop/SoldLabel").visible = true
+	

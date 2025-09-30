@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6woywf0dd7k"]
+[gd_scene load_steps=27 format=3 uid="uid://b6woywf0dd7k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_xgg61"]
 [ext_resource type="FontFile" uid="uid://ba2o1tgt8s5b2" path="res://assets/SuperAdorable-MAvyp.ttf" id="2_6cecm"]
@@ -21,6 +21,17 @@
 [ext_resource type="Texture2D" uid="uid://cv0jibbodyiva" path="res://assets/bow_cat.png" id="16_kcmb2"]
 [ext_resource type="AudioStream" uid="uid://c8q2vpqm8fe3m" path="res://assets/Meow.ogg" id="19_ue6nn"]
 [ext_resource type="AudioStream" uid="uid://cnoy0t5k054c3" path="res://assets/Cat Song 1.0.wav" id="20_kv31c"]
+[ext_resource type="FontFile" uid="uid://bd7dqopvy2j51" path="res://assets/Bigbesty-E4LDz.otf" id="22_pwchi"]
+[ext_resource type="Script" path="res://scripts/ticker.gd" id="23_rcd02"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggsv3"]
+bg_color = Color(1, 0.403922, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ro2n"]
+bg_color = Color(0.996078, 0.639216, 0.317647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6sojw"]
+bg_color = Color(1, 0.403922, 0.0352941, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_xgg61")
@@ -121,6 +132,31 @@ bus = &"SFX"
 process_mode = 3
 stream = ExtResource("20_kv31c")
 autoplay = true
+
+[node name="tickerContainer" type="PanelContainer" parent="."]
+offset_top = 760.0
+offset_right = 1920.0
+offset_bottom = 848.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggsv3")
+
+[node name="ticker" type="RichTextLabel" parent="tickerContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("22_pwchi")
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+theme_override_styles/background = SubResource("StyleBoxFlat_8ro2n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6sojw")
+bbcode_enabled = true
+text = "[center] afdsfkadjhfkjadskfjfasdkhfhkajdshfkjsda [/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("23_rcd02")
 
 [connection signal="pressed" from="OrangeCat" to="." method="_on_orange_cat_pressed"]
 [connection signal="increase_meow" from="ArtCat" to="." method="_on_art_cat_increase_meow"]

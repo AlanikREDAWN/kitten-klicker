@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ds254imp31x51"]
+[gd_scene load_steps=23 format=3 uid="uid://ds254imp31x51"]
 
 [ext_resource type="Script" path="res://scripts/shop.gd" id="1_mcttn"]
 [ext_resource type="Texture2D" uid="uid://kfnxg1xwxkvt" path="res://assets/close.png" id="2_4twbk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ctpp6wvtngxnl" path="res://assets/next.png" id="7_4a13n"]
 [ext_resource type="Texture2D" uid="uid://de66mp4ottf87" path="res://assets/catCursorFullSize.png" id="8_hge8i"]
 [ext_resource type="Texture2D" uid="uid://c6ad4twk53wb3" path="res://assets/prev.png" id="8_oboox"]
+[ext_resource type="Texture2D" uid="uid://c6pfqsymgl2mg" path="res://assets/newsIcon.png" id="9_83yd3"]
 [ext_resource type="FontFile" uid="uid://bd7dqopvy2j51" path="res://assets/Bigbesty-E4LDz.otf" id="9_itjgv"]
 [ext_resource type="PackedScene" uid="uid://b65jocj1g8vaj" path="res://scenes/pop_up.tscn" id="13_30aun"]
 [ext_resource type="AudioStream" uid="uid://debijk1kshsa0" path="res://assets/coin.wav" id="14_b5wsl"]
@@ -115,6 +116,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Cat Cursor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_83yd3")
+}],
+"loop": true,
+"name": &"News Ticker",
 "speed": 5.0
 }, {
 "frames": [{
