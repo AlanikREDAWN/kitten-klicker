@@ -57,3 +57,8 @@ func _on_bow_cat_increase_meow() -> void:
 func _on_quilt_background_increase_meow() -> void:
 	Global.meows += 10
 	meows_label.text = "Meows: " + str(Global.meows)
+
+
+func _on_triangle_background_increase_meow() -> void:
+	Global.meows += 20
+	meows_label.text = "Meows: " + str(Global.meows)

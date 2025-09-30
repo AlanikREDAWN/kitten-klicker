@@ -12,43 +12,49 @@ var items = {
 	1: {
 		"Name": "Beige Cat",
 		"Desc": "+2 Meows per second",
-		"Cost": 20,
+		"Cost": 30,
 	},
 	2: {
 		"Name": "Black Cat",
 		"Desc": "+3 Meows per second",
-		"Cost": 30,
+		"Cost": 50,
 	},
 	3: {
 		"Name": "Brown Cat",
 		"Desc": "+4 Meows per second",
-		"Cost": 40,
+		"Cost": 70,
 	},
 	4: {
 		"Name": "Scared Cat",
 		"Desc": "+5 Meows per second",
-		"Cost": 50,
+		"Cost": 90,
 	},
 	5: {
 		"Name": "Bow Cat",
 		"Desc": "+6 Meows per second",
-		"Cost": 60,
+		"Cost": 100,
 	},
 	6: {
 		"Name": "Cat Cursor",
 		"Desc": "Changes your cursor into a cat paw! +5 meows per click",
-		"Cost": 150,
+		"Cost": 200,
 	},
 	7: {
 		"Name": "News Ticker",
 		"Desc": "Interesting news headlines scrolling across your screen!",
-		"Cost": 200
+		"Cost": 300
 	},
 	8: {
+		"Name": "Triangle Background",
+		"Desc": "A fun triangle background! +10 Meows per second",
+		"Cost": 400
+	},
+	9: {
 		"Name": "Quilt Background",
-		"Desc": "A fun quilt background! +10 Meows per second",
-		"Cost": 250
+		"Desc": "A fun quilt background! +20 Meows per second",
+		"Cost": 500
 	}
+
 }
 
 var art_cat_unlocked = false
@@ -60,6 +66,7 @@ var bow_cat_unlocked = false
 var cursor_unlocked = false
 var ticker_unlocked = false
 var quilt_unlocked = false
+var triangle_unlocked = false
 
 func unlock_art_cat():
 	art_cat_unlocked = true
@@ -102,7 +109,13 @@ func unlock_news_ticker():
 	get_node("../main/tickerContainer").visible = true
 	get_node("../main/shop/SoldLabel").visible = true
 
+func unlock_triangle_background():
+	triangle_unlocked = true
+	get_node("../main/triangleBackground").visible = true
+	get_node("../main/shop/SoldLabel").visible = true
+
 func unlock_quilt_background():
 	quilt_unlocked = true
+	#get_node("../main/triangleBackground").visible = false
 	get_node("../main/quiltBackground").visible = true
 	get_node("../main/shop/SoldLabel").visible = true
