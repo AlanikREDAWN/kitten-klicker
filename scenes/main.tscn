@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6woywf0dd7k"]
+[gd_scene load_steps=30 format=3 uid="uid://b6woywf0dd7k"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_xgg61"]
 [ext_resource type="FontFile" uid="uid://ba2o1tgt8s5b2" path="res://assets/SuperAdorable-MAvyp.ttf" id="2_6cecm"]
 [ext_resource type="Texture2D" uid="uid://dlo6klhfieil3" path="res://assets/orange_cat.png" id="2_xpbov"]
+[ext_resource type="Script" path="res://scripts/quilt_background.gd" id="3_htur5"]
 [ext_resource type="Texture2D" uid="uid://d1q17bw8k34p2" path="res://assets/art_cat.png" id="3_nnuop"]
 [ext_resource type="Texture2D" uid="uid://ch5bhnlm25qpg" path="res://assets/orange_cat_hover.png" id="4_0iae2"]
 [ext_resource type="Script" path="res://scripts/art_cat.gd" id="4_wbtxb"]
@@ -23,6 +24,10 @@
 [ext_resource type="AudioStream" uid="uid://cnoy0t5k054c3" path="res://assets/Cat Song 1.0.wav" id="20_kv31c"]
 [ext_resource type="FontFile" uid="uid://bd7dqopvy2j51" path="res://assets/Bigbesty-E4LDz.otf" id="22_pwchi"]
 [ext_resource type="Script" path="res://scripts/ticker.gd" id="23_rcd02"]
+[ext_resource type="Texture2D" uid="uid://6fn2idp4grya" path="res://assets/quiltBackground.png" id="24_rp1mu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2u6u"]
+texture = ExtResource("24_rp1mu")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggsv3"]
 bg_color = Color(1, 0.403922, 0.0392157, 1)
@@ -36,6 +41,13 @@ bg_color = Color(1, 0.403922, 0.0352941, 1)
 [node name="main" type="Node2D"]
 script = ExtResource("1_xgg61")
 
+[node name="quiltBackground" type="Panel" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_j2u6u")
+script = ExtResource("3_htur5")
+
 [node name="Label" type="Label" parent="."]
 process_mode = 3
 offset_left = 35.0
@@ -44,6 +56,8 @@ offset_right = 285.0
 offset_bottom = 95.0
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.529412, 0.756863, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("2_6cecm")
 theme_override_font_sizes/font_size = 100
 text = "Meows: 0"
@@ -134,6 +148,7 @@ stream = ExtResource("20_kv31c")
 autoplay = true
 
 [node name="tickerContainer" type="PanelContainer" parent="."]
+visible = false
 offset_top = 760.0
 offset_right = 1920.0
 offset_bottom = 848.0
@@ -158,6 +173,7 @@ scroll_active = false
 autowrap_mode = 0
 script = ExtResource("23_rcd02")
 
+[connection signal="increase_meow" from="quiltBackground" to="." method="_on_quilt_background_increase_meow"]
 [connection signal="pressed" from="OrangeCat" to="." method="_on_orange_cat_pressed"]
 [connection signal="increase_meow" from="ArtCat" to="." method="_on_art_cat_increase_meow"]
 [connection signal="increase_meow" from="BeigeCat" to="." method="_on_beige_cat_increase_meow"]

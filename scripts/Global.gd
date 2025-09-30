@@ -43,6 +43,11 @@ var items = {
 		"Name": "News Ticker",
 		"Desc": "Interesting news headlines scrolling across your screen!",
 		"Cost": 200
+	},
+	8: {
+		"Name": "Quilt Background",
+		"Desc": "A fun quilt background! +10 Meows per second",
+		"Cost": 250
 	}
 }
 
@@ -54,6 +59,7 @@ var scared_cat_unlocked = false
 var bow_cat_unlocked = false
 var cursor_unlocked = false
 var ticker_unlocked = false
+var quilt_unlocked = false
 
 func unlock_art_cat():
 	art_cat_unlocked = true
@@ -95,4 +101,8 @@ func unlock_news_ticker():
 	ticker_unlocked = true
 	get_node("../main/tickerContainer").visible = true
 	get_node("../main/shop/SoldLabel").visible = true
-	
+
+func unlock_quilt_background():
+	quilt_unlocked = true
+	get_node("../main/quiltBackground").visible = true
+	get_node("../main/shop/SoldLabel").visible = true

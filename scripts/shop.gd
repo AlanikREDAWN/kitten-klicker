@@ -128,6 +128,7 @@ func _on_buy_pressed() -> void:
 				popup.visible = true
 		else:
 			pass
+			
 	if currItem == 7: # news ticker
 		if Global.ticker_unlocked == false:
 			$SoldLabel.visible = false
@@ -140,6 +141,20 @@ func _on_buy_pressed() -> void:
 				popup.visible = true
 		else:
 			pass
+			
+	if currItem == 8: # quilt background
+		if Global.quilt_unlocked == false:
+			$SoldLabel.visible = false
+			if Global.meows >= Global.items[currItem]["Cost"]:
+				Global.meows -= Global.items[currItem]["Cost"]
+				meows_label.text = "Meows: " + str(Global.meows)
+				Global.unlock_quilt_background()
+				$AudioStreamPlayer.play()
+			else:
+				popup.visible = true
+		else:
+			pass
+	
 	
 	
 func check_for_sold():
@@ -187,6 +202,12 @@ func check_for_sold():
 	
 	if currItem == 7: # news ticker
 		if Global.ticker_unlocked == false:
+			$SoldLabel.visible = false
+		else:
+			$SoldLabel.visible = true
+	
+	if currItem == 8: # quilt background
+		if Global.quilt_unlocked == false:
 			$SoldLabel.visible = false
 		else:
 			$SoldLabel.visible = true
