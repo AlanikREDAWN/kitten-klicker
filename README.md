@@ -1,5 +1,9 @@
 # kitten-klicker
 
+play at https://kittycat81.itch.io/kitten-klicker!
+
+How to play: Just click the kitty in the middle! you can open the shop to buy upgrades using the shop button at the bottom
+
 ## features to add
 [x] meowing sound
 [x] upgrades
